@@ -22,7 +22,7 @@ public class program {
         
         
 
-        Product product = new Product(name, price);
+        Product product = new Product(name, price,0);
 
         product.setName("Computer");
         System.out.println("Uptade name: "+ product.getName());
