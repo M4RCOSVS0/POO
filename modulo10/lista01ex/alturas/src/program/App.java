@@ -3,7 +3,7 @@ package program;
 import java.util.Locale;
 import java.util.Scanner;
 
-import entietes.Pessoa;
+import entietes.Pessoa1;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -11,7 +11,7 @@ public class App {
         Scanner sc = new Scanner(System.in);
         System.out.printf("Quantos numeros vc quer digitar? ");
         int n = sc.nextInt();
-        Pessoa vet[] = new Pessoa[n];
+        Pessoa1 vet[] = new Pessoa1[n];
         double sum1 = 0.0;
         double sum2 = 0.0;
         for (int i = 0; i < vet.length; i++) {
@@ -21,7 +21,7 @@ public class App {
             int idade = sc.nextInt();
             double altura = sc.nextDouble();
             sum1 += altura;
-            vet[i] = new Pessoa(nome, idade, altura);
+            vet[i] = new Pessoa1(nome, idade, altura);
             if (vet[i].getIdade() < 16) {
                 sum2++;
             }
