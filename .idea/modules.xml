@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/modulo12/Enums/Enums.iml" filepath="$PROJECT_DIR$/modulo12/Enums/Enums.iml" />
+      <module fileurl="file://$PROJECT_DIR$/POO.iml" filepath="$PROJECT_DIR$/POO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo08/aula02/aula02.iml" filepath="$PROJECT_DIR$/modulo08/aula02/aula02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo08/aula03/aula03.iml" filepath="$PROJECT_DIR$/modulo08/aula03/aula03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo08/aula7/aula7.iml" filepath="$PROJECT_DIR$/modulo08/aula7/aula7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo08/Exercicios/ex01/ex01.iml" filepath="$PROJECT_DIR$/modulo08/Exercicios/ex01/ex01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo08/Exercicios/ex02/ex02.iml" filepath="$PROJECT_DIR$/modulo08/Exercicios/ex02/ex02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo08/Exercicios/ex03/ex03.iml" filepath="$PROJECT_DIR$/modulo08/Exercicios/ex03/ex03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo08/Exercicios/ex04/ex04.iml" filepath="$PROJECT_DIR$/modulo08/Exercicios/ex04/ex04.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo12/exercicio01/exercicio01.iml" filepath="$PROJECT_DIR$/modulo12/exercicio01/exercicio01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo12/exercicio02/exercicio02.iml" filepath="$PROJECT_DIR$/modulo12/exercicio02/exercicio02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo09/modulo09.iml" filepath="$PROJECT_DIR$/modulo09/modulo09.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo11/modulo11.iml" filepath="$PROJECT_DIR$/modulo11/modulo11.iml" />
+    </modules>
+  </component>
+</project>
