@@ -22,3 +22,35 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# Compilação do .NET
+bin/
+obj/
+out/
+
+# Configurações de usuário
+*.user
+*.suo
+*.vscode/
+*.vs/
+*.csproj.user
+*.sln.cache
+
+# Logs, pacotes e dependências
+*.log
+logs/
+nuget.exe
+packages/
+node_modules/
+
+# Configurações de build
+project.lock.json
+project.assets.json
+appsettings.*.json
+
+# Arquivos de cache e temporários
+*.tmp
+*.cache
+Thumbs.db
+ehthumbs.db
+
