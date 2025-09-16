@@ -8,14 +8,14 @@ namespace Exercicio_01
 {
     public class ContaBancaria
     {
+        public string Titular { get; set; }
+        private decimal Saldo;
+     
         public ContaBancaria(string titular)
         {
             Titular = titular;
             Saldo = 0;
         }
-
-        public string Titular { get; set; }
-        private decimal Saldo;
 
         public void MostrarSaldo()
         {
@@ -24,7 +24,7 @@ namespace Exercicio_01
 
         public void Sacar(decimal valor)
         {
-            if(valor <= 0)
+            if (valor <= 0)
             {
                 Console.WriteLine("Erro, Valor para saque deve seve ser maior que 0");
                 return;
