@@ -4,55 +4,83 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Menu do Sistema");
-            Console.WriteLine("1 - Adicionar Produto");
-            Console.WriteLine("2 - Adicionar Itens ao Pedido");
-            Console.WriteLine("3 - Adicionar Pedido");
-
+            bool continuar = true;
             List<Produto> p = new List<Produto>();
             List<ItemPedido> i = new List<ItemPedido>();
-            int op = int.Parse(Console.ReadLine());
-            switch (op)
+            while (continuar)
             {
-                case 1:
-                    Console.WriteLine("Informe o nome e preço");
-                    string nome = Console.ReadLine();
-                    Console.WriteLine("Informe o preço");
-                    decimal price = decimal.Parse(Console.ReadLine());
-                    Produto prod = new Produto(nome, price);
-                    p.Add(prod);
-                    break;
-                case 2:
-                    
-                    if (p.Count == 0)
-                    {
-                        Console.WriteLine("Não existe produtos ainda!");
-                        return;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Informe qual produto deseja adicionar ao carrinho");
-                        Console.WriteLine("Produtos disponiveis:");
-                        int cont = 0;
-                        foreach (var pro in p)
+                Console.WriteLine("-----------------------------------");
+                Console.WriteLine("Menu do Sistema");
+                Console.WriteLine("1 - Adicionar Produto");
+                Console.WriteLine("2 - Adicionar Itens ao Pedido");
+                Console.WriteLine("3 - Adicionar Pedido");
+                Console.WriteLine("4 - Sair");
+                Console.WriteLine("-----------------------------------");
+
+
+                int op = int.Parse(Console.ReadLine());
+                switch (op)
+                {
+                    case 1:
+                        Console.WriteLine("Informe o nome e preço");
+                        string nome = Console.ReadLine();
+                        Console.WriteLine("Informe o preço");
+                        decimal price = decimal.Parse(Console.ReadLine());
+                        Produto prod = new Produto(nome, price);
+                        p.Add(prod);
+                        break;
+                    case 2:
+                        if (p.Count == 0)
                         {
-                            cont++;
-                            Console.WriteLine($"{cont} - ${pro.Nome}");
+                            Console.WriteLine("Não existe produtos ainda!");
                         }
-                        Console.Write("Escolha o número do produto: ");
-                        int op2 = int.Parse(Console.ReadLine());
+                        else
+                        {
+                            Console.WriteLine("Informe qual produto deseja adicionar ao carrinho");
+                            Console.WriteLine("Produtos disponiveis:");
+                            int cont = 0;
+                            foreach (var pro in p)
+                            {
+                                cont++;
+                                Console.WriteLine($"{cont} - {pro.Nome}");
+                            }
+                            Console.Write("Escolha o número do produto: ");
+                            int op2 = int.Parse(Console.ReadLine());
 
-                        Console.WriteLine("Escolha a quantidade: ");
-                        int quant = int.Parse(Console.ReadLine());
+                            Console.WriteLine("Escolha a quantidade: ");
+                            int quant = int.Parse(Console.ReadLine());
 
-                        Produto produtoSelecionado = p[op2 - 1];
-                        ItemPedido itemPedido = new ItemPedido(produtoSelecionado, quant);
-                        i.Add(itemPedido);
-                        Console.WriteLine($"Produto {produtoSelecionado.Nome} adicionado ao pedido!");
-                    }
-                    break;
-                
+                            Produto produtoSelecionado = p[op2 - 1];
+                            ItemPedido itemPedido = new ItemPedido(produtoSelecionado, quant);
+                            i.Add(itemPedido);
+                            Console.WriteLine($"Produto {produtoSelecionado.Nome} adicionado ao pedido!");
+                        }
+                        break;
+                    case 3:
+
+                        if (i.Count == 0)
+                        {
+                            Console.WriteLine("Não existe itens no seu carrinho!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Quais produtos do carrinho deseja comprar agora?");
+                            Console.WriteLine("Itens disponiveis no carrinho:");
+                            foreach (var item in i)
+                            {
+                                Console.WriteLine($"{item.Produto.Nome} - {item.Quantidade}");
+                            }
+                        }
+                        break;
+                    case 4:
+                        Console.WriteLine("Encerrando o sistema!");
+                        continuar = false;
+                        break;
+
+                }
             }
+
+
 
             /*
             List<Produto> produtos = new List<Produto>()
