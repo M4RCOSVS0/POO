@@ -7,6 +7,11 @@
             bool continuar = true;
             List<Produto> p = new List<Produto>();
             List<ItemPedido> i = new List<ItemPedido>();
+
+            Pedido pedido01;
+            Console.WriteLine("Informe seu Nome: ");
+            string seunome = Console.ReadLine();
+            pedido01 = new Pedido(seunome);
             while (continuar)
             {
                 Console.WriteLine("-----------------------------------");
@@ -42,18 +47,25 @@
                             foreach (var pro in p)
                             {
                                 cont++;
-                                Console.WriteLine($"{cont} - {pro.Nome}");
+                                Console.WriteLine($"{cont} - Nome: {pro.Nome} Preço: {pro.Preco}");
                             }
                             Console.Write("Escolha o número do produto: ");
                             int op2 = int.Parse(Console.ReadLine());
 
-                            Console.WriteLine("Escolha a quantidade: ");
-                            int quant = int.Parse(Console.ReadLine());
+                            if (op2 >= 1 && op2 <= p.Count)
+                            {
+                                Console.WriteLine("Escolha a quantidade: ");
+                                int quant = int.Parse(Console.ReadLine());
 
-                            Produto produtoSelecionado = p[op2 - 1];
-                            ItemPedido itemPedido = new ItemPedido(produtoSelecionado, quant);
-                            i.Add(itemPedido);
-                            Console.WriteLine($"Produto {produtoSelecionado.Nome} adicionado ao pedido!");
+                                Produto produtoSelecionado = p[op2 - 1];
+                                ItemPedido itemPedido = new ItemPedido(produtoSelecionado, quant);
+                                i.Add(itemPedido);
+                                Console.WriteLine($"Produto {produtoSelecionado.Nome} adicionado ao pedido!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Número inválido!");
+                            }
                         }
                         break;
                     case 3:
@@ -66,11 +78,40 @@
                         {
                             Console.WriteLine("Quais produtos do carrinho deseja comprar agora?");
                             Console.WriteLine("Itens disponiveis no carrinho:");
+                            int cont = 0;
                             foreach (var item in i)
                             {
-                                Console.WriteLine($"{item.Produto.Nome} - {item.Quantidade}");
+                                cont++;
+                                Console.WriteLine($"{cont} - Nome:{item.Produto.Nome} - Quantidade:{item.Quantidade}");
+                            }
+                            Console.Write("Escolha o número do produto: ");
+                            int op3 = int.Parse(Console.ReadLine());
+
+                            if (op3 >= 1 && op3 <= i.Count)
+                            {
+                                ItemPedido itemPedidoSelecionado = i[op3 - 1];
+
+                                pedido01.AdicionarItem(itemPedidoSelecionado);
                             }
                         }
+                        bool continuar2 = true;
+                        while (continuar2)
+                        {
+                            Console.WriteLine("O que deseja fazer agora?");
+                            Console.WriteLine("1 - Calcular total");
+                            Console.WriteLine("2 - Voltar ao menu anterior");
+                            int op4 = int.Parse(Console.ReadLine());
+                            if (op4 == 1)
+                            {
+                                Console.WriteLine($"{pedido01.Cliente} o valor total é de {pedido01.CalcularTotal()}");
+                            }
+                            if (op4 == 2)
+                            {
+                                Console.WriteLine("voltando!");
+                                continuar2 = false;
+                            }
+                        }
+
                         break;
                     case 4:
                         Console.WriteLine("Encerrando o sistema!");

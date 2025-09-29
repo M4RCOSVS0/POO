@@ -8,7 +8,7 @@ namespace Exercicio_05
 {
     internal class ItemPedido
     {
-        public Produto Produto { get; private set; }
+        public Produto Produto { get; private set; }//composição
         public int Quantidade { get; private set; }
 
         public ItemPedido(Produto produto, int quantidade)
