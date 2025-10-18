@@ -6,52 +6,102 @@ using System.Threading.Tasks;
 
 namespace Exercicio_01
 {
+    /// <summary>
+    /// Representa uma conta bancária com operações validadas
+    /// </summary>
     public class ContaBancaria
     {
-        public string Titular { get; set; }
-        private decimal Saldo;
-     
-        public ContaBancaria(string titular)
+        private decimal saldo;
+
+        public string Titular { get; private set; }
+        public string NumeroConta { get; private set; }
+        public decimal Saldo => saldo;
+
+        public ContaBancaria(string titular, string numeroConta)
         {
+            if (string.IsNullOrWhiteSpace(titular))
+                throw new ArgumentException("O titular não pode ser vazio.");
+
+            if (string.IsNullOrWhiteSpace(numeroConta))
+                throw new ArgumentException("O número da conta não pode ser vazio.");
+
             Titular = titular;
-            Saldo = 0;
+            NumeroConta = numeroConta;
+            saldo = 0;
         }
 
-        public void MostrarSaldo()
-        {
-            Console.WriteLine($"Saldo atual: R$ {Saldo:F2}");
-        }
-
-        public void Sacar(decimal valor)
-        {
-            if (valor <= 0)
-            {
-                Console.WriteLine("Erro, Valor para saque deve seve ser maior que 0");
-                return;
-            }
-
-            if (valor > Saldo)
-            {
-                Console.WriteLine("Erro, valor pedido é maior que o saldo");
-                return;
-            }
-
-            Saldo -= valor;
-            Console.WriteLine($"Saque de R$ {valor:F2} realizado com sucesso!");
-        }
-
+        /// <summary>
+        /// Deposita um valor na conta
+        /// </summary>
         public void Depositar(decimal valor)
         {
             if (valor <= 0)
             {
-                Console.WriteLine("Erro, valor depositado precisa ser maior que 0");
-                return;
+                throw new ValorInvalidoException(
+                    "O valor do depósito deve ser maior que zero.",
+                    valor);
             }
 
-            Saldo += valor;
-            Console.WriteLine($"Deposito de {valor:F2} realizado com sucesso.");
+            saldo += valor;
+            Console.WriteLine($"\n✓ Depósito de {valor:C} realizado com sucesso!");
         }
 
+        /// <summary>
+        /// Saca um valor da conta
+        /// </summary>
+        public void Sacar(decimal valor)
+        {
+            if (valor <= 0)
+            {
+                throw new ValorInvalidoException(
+                    "O valor do saque deve ser maior que zero.",
+                    valor);
+            }
 
+            if (saldo < valor)
+            {
+                throw new SaldoInsuficenteException(
+                    "Saldo insuficiente para realizar o saque.",
+                    saldo,
+                    valor);
+            }
+
+            saldo -= valor;
+            Console.WriteLine($"\n✓ Saque de {valor:C} realizado com sucesso!");
+        }
+
+        /// <summary>
+        /// Transfere um valor para outra conta
+        /// </summary>
+        public void Transferir(ContaBancaria destino, decimal valor)
+        {
+            if (destino == null)
+                throw new ArgumentNullException(nameof(destino), "A conta de destino não pode ser nula.");
+
+            if (destino == this)
+                throw new InvalidOperationException("Não é possível transferir para a mesma conta.");
+
+            // Validações são feitas dentro dos métodos Sacar e Depositar
+            Console.WriteLine($"\n→ Iniciando transferência de {valor:C}...");
+
+            Sacar(valor);
+            destino.Depositar(valor);
+
+            Console.WriteLine($"✓ Transferência concluída para {destino.Titular} (Conta: {destino.NumeroConta})");
+        }
+
+        /// <summary>
+        /// Exibe o saldo atual da conta
+        /// </summary>
+        public void MostrarSaldo()
+        {
+            Console.WriteLine($"\n╔════════════════════════════════════╗");
+            Console.WriteLine($"║         EXTRATO DA CONTA           ║");
+            Console.WriteLine($"╠════════════════════════════════════╣");
+            Console.WriteLine($"║ Titular: {Titular,-24}             ║");
+            Console.WriteLine($"║ Conta:   {NumeroConta,-24}         ║");
+            Console.WriteLine($"║ Saldo:   {saldo,-24:C}             ║");
+            Console.WriteLine($"╚════════════════════════════════════╝");
+        }
     }
 }
